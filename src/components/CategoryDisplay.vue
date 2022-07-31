@@ -22,7 +22,7 @@
         }"
       >
         <img
-          :src="`/headers/${item.headerImage}`"
+          :src="require(`@/assets/headers/${item.headerImage}`)"
           :alt="item.headline"
           :style="{ maxWidth: conentDirection === 'row' ? '50%' : '100%' }"
         />

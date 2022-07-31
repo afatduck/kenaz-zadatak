@@ -71,7 +71,7 @@
       :images="
         Array(7)
           .fill(undefined)
-          .map((a, i) => `/gallery/${i + 1}.webp`)
+          .map((a, i) => require(`@/assets/gallery/${i + 1}.webp`))
       "
     ></Gallery>
   </main>

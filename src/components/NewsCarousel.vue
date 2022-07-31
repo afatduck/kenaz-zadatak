@@ -17,7 +17,10 @@
         <vueper-slide v-for="(item, index) in news" :key="index">
           <template #content>
             <router-link :to="`/news/${item.id}`" ref="items">
-              <img :src="`/headers/${item.headerImage}`" :alt="item.headline" />
+              <img
+                :src="require(`@/assets/headers/${item.headerImage}`)"
+                :alt="item.headline"
+              />
               <p class="date-sm">{{ item.date }}</p>
               <h4>{{ item.headline }}</h4>
             </router-link>

@@ -10,7 +10,10 @@
           </div>
           <h4>{{ item.headline }}</h4>
         </div>
-        <img :src="`/headers/${item.headerImage}`" :alt="item.headline" />
+        <img
+          :src="require(`@/assets/headers/${item.headerImage}`)"
+          :alt="item.headline"
+        />
       </router-link>
       <hr v-if="index != news.length - 1" />
     </template>

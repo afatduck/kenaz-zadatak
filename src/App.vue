@@ -35,6 +35,7 @@ export default defineComponent({
 
 body
   background-color: $background
+  overflow-x: hidden
   margin: 0
 
 #app

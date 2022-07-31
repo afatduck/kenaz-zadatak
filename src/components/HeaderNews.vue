@@ -15,7 +15,7 @@
       <vueper-slide
         v-for="(slide, i) in news"
         :key="i"
-        :image="`/headers/${slide.headerImage}`"
+        :image="require(`@/assets/headers/${slide.headerImage}`)"
       >
         <template #content>
           <div class="slide-content">

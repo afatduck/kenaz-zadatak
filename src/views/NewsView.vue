@@ -2,7 +2,10 @@
   <main>
     <Placeholder :text="['banner', '940x120']" :span="3"></Placeholder>
     <header v-if="id">
-      <img :src="`/headers/${current.headerImage}`" :alt="current.headline" />
+      <img
+        :src="require(`@/assets/headers/${current.headerImage}`)"
+        :alt="current.headline"
+      />
       <div>
         <p class="date-sm">{{ current.date }}</p>
         <h1>{{ current.headline }}</h1>
@@ -13,7 +16,10 @@
         <div class="news" v-if="id">
           <template v-for="(item, index) in current.content" :key="index">
             <p v-if="item.type === 'text'">{{ item.value }}</p>
-            <img v-if="item.type === 'image'" :src="`/headers/${item.value}`" />
+            <img
+              v-if="item.type === 'image'"
+              :src="require(`@/assets/headers/${item.value}`)"
+            />
           </template>
           <img class="fake" src="@/assets/socials.png" alt="Fake socials" />
         </div>
@@ -36,7 +42,7 @@
       <h2>About the Author</h2>
       <div>
         <img
-          :src="`/authors/${current.author.id}.webp`"
+          :src="require(`@/assets/authors/${current.author.id}.webp`)"
           :alt="current.author.name"
         />
         <p>{{ current.author.about }}</p>
