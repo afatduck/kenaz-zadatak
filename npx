@@ -1,0 +1,253 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var _this = this;
+globalThis.fetch = require("node-fetch");
+var authors = [
+    {
+        id: 0,
+        name: "Pedro Collins",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta grav."
+    },
+    {
+        id: 1,
+        name: "Phillip Palmer",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec"
+    },
+    {
+        id: 2,
+        name: "Morris Bishop",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec"
+    },
+    {
+        id: 3,
+        name: "Tony May",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec"
+    },
+    {
+        id: 4,
+        name: "Delores Bishop",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec"
+    },
+    {
+        id: 5,
+        name: "Robinson Rd",
+        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec"
+    },
+];
+var headlines = {
+    news: [
+        "All You Need To Know About News.",
+        "Seven Precious Tips To Help You Get Better In News Industry.",
+        "7 Important Facts That You Should Know About The News Industry.",
+        "Why Is News So Famous?",
+        "Is News Still Relevant?",
+        "Be A Pioneer In The News Industry. Here's What You'll Need.",
+        "The Hidden Agenda Of News.",
+        "5 Top Risks Of News.",
+        "The Reasons Why We Love The News Industry.",
+        "Learn From These Mistakes Before You Learn News.",
+    ],
+    business: [
+        "Never Mess With Business And Here's The Reasons Why.",
+        "7 Mind Numbing Facts About Business.",
+        "15 Innovative Approaches To Improve Your Business.",
+        "7 Useful Tips From Experts In Business.",
+        "This Is Why This Year Will Be The Year Of Business.",
+        "Here's What No One Tells You About Business.",
+        "Ten Shitty Things Business Have Done In 2015.",
+        "These Local Practices In Business Are So Bizarre That They Will Make Your Jaw Drop!",
+        "This Is Why Business Is So Famous!",
+        "15 Ways To Learn Business Effectively.",
+    ],
+    sports: [
+        "7 Lessons That Will Teach You All You Need To Know About Sports.",
+        "The Advantages Of Being In Sports Industry.",
+        "10 Ways To Learn Sports Effectively.",
+        "Seven Reliable Sources To Learn About Sports.",
+        "15 Fishy Things That Nobody Told You About Sports Industry.",
+        "How To Have A Fantastic Sports With Minimal Spending.",
+        "There's No Point Doing Sports If You're Not Doing It Right.",
+        "The Hidden Agenda Of Sports.",
+        "The Ultimate Revelation On The Sports Industry.",
+        "Five Explanation On Why Sports Is Important.",
+    ],
+    life: [
+        "7 Factors That Affect Life's Longevity.",
+        "Understand Life Before You Regret.",
+        "The Shocking Revelation of Life.",
+        "How Life Can Help You Improve Your Health.",
+        "7 Lessons I've Learned From Life.",
+        "What You Know About Life And What You Don't Know About Life.",
+        "Everything You Need To Know About Life.",
+        "Learn The Truth About Life In The Next 60 Seconds.",
+        "This Is Why Life Is So Famous!",
+        "10 Things Nobody Told You About Life.",
+    ],
+    tech: [
+        "Understanding The Background Of Tech.",
+        "What I Wish Everyone Knew About Tech.",
+        "Seven Reasons You Should Fall In Love With Tech.",
+        "The Reasons Why We Love Tech.",
+        "This Story Behind Tech Will Haunt You Forever!",
+        "This Year Will Be The Year of Tech.",
+        "Five Explanation On Why Tech Is Important.",
+        "Seven Facts You Never Knew About Tech.",
+        "7 Awesome Things You Can Learn From Studying Tech.",
+        "Ten Ways Tech Can Improve Your Business.",
+    ],
+    travel: [
+        "Learn From These Mistakes Before You Learn Traveling.",
+        "How To Own Traveling For Free.",
+        "20 Wonderful Traveling. Number 16 is Absolutely Stunning.",
+        "The Worst Advices We've Heard For Traveling.",
+        "7 Important Facts That You Should Know About Traveling.",
+        "7 Lessons I've Learned From Traveling.",
+        "This Is Why Traveling Is So Famous!",
+        "Seven Explanation On Why Traveling Is Important.",
+        "The Millionaire Guide On Traveling To Help You Get Rich.",
+        "7 Various Ways To Do Traveling.",
+    ]
+};
+var categories = ["news", "business", "sports", "life", "tech", "travel"];
+var textSizes = ["short", "medium", "large"];
+var getRandom = function (arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+};
+var getRandomText = function (size, paragraphs) { return __awaiter(_this, void 0, void 0, function () {
+    var url, response, text;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                url = "https://loripsum.net/generate.php?p=".concat(paragraphs, "&l=").concat(size);
+                return [4 /*yield*/, fetch(url)];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, response.text()];
+            case 2:
+                text = _a.sent();
+                text = text.replaceAll("<p>", "").replaceAll("</p>", "");
+                return [2 /*return*/, text.split("\n")];
+        }
+    });
+}); };
+var getRandomName = function () { return __awaiter(_this, void 0, void 0, function () {
+    var res, data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch("https://api.namefake.com/")];
+            case 1:
+                res = _a.sent();
+                return [4 /*yield*/, res.json()];
+            case 2:
+                data = _a.sent();
+                return [2 /*return*/, data.name];
+        }
+    });
+}); };
+var numOfNews = 1;
+var news = [];
+function generateNews() {
+    return __awaiter(this, void 0, void 0, function () {
+        var i, category, headline, d, date, headerImage, contentLength, paragraphs, content, author, comments, commentNum, i_1, user, text, time;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    i = 0;
+                    _a.label = 1;
+                case 1:
+                    if (!(i < numOfNews)) return [3 /*break*/, 9];
+                    category = getRandom(categories);
+                    headline = getRandom(headlines[category]);
+                    d = new Date();
+                    d.setMonth(d.getMonth() - 1);
+                    d.setDate(Math.floor(Math.random() * d.getDate()));
+                    date = d.toISOString().split("T")[0];
+                    headerImage = Math.floor(Math.random() * 11).toString() + "./webp";
+                    contentLength = Math.floor(Math.random() * 5) + 5;
+                    return [4 /*yield*/, getRandomText(getRandom(textSizes), contentLength)];
+                case 2:
+                    paragraphs = _a.sent();
+                    content = paragraphs.map(function (paragraph) { return ({
+                        type: "text",
+                        value: paragraph
+                    }); });
+                    content.splice(Math.trunc(contentLength / 2), 0, {
+                        type: "image",
+                        value: Math.floor(Math.random() * 11).toString() + "./webp"
+                    });
+                    author = getRandom(authors);
+                    comments = [];
+                    commentNum = Math.floor(Math.random() * 5) + 1;
+                    i_1 = 0;
+                    _a.label = 3;
+                case 3:
+                    if (!(i_1 < commentNum)) return [3 /*break*/, 7];
+                    return [4 /*yield*/, getRandomName()];
+                case 4:
+                    user = _a.sent();
+                    return [4 /*yield*/, getRandomText("short", 1)];
+                case 5:
+                    text = (_a.sent())[0];
+                    time = new Date().toLocaleString();
+                    comments.push({ user: user, text: text, time: time });
+                    _a.label = 6;
+                case 6:
+                    i_1++;
+                    return [3 /*break*/, 3];
+                case 7:
+                    news.push({
+                        id: i,
+                        headline: headline,
+                        headerImage: headerImage,
+                        content: content,
+                        date: date,
+                        author: author,
+                        comments: comments,
+                        category: category
+                    });
+                    _a.label = 8;
+                case 8:
+                    i++;
+                    return [3 /*break*/, 1];
+                case 9:
+                    console.log(JSON.stringify(news, null, 2));
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+generateNews();

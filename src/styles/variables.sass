@@ -1,0 +1,61 @@
+// Colors
+$background: #EEEEEE
+$background-dark: #252525
+$text-light: #EEF6FA
+$text-dark: #363F48
+$text-dim: #666666
+$business: #EE6151
+$news: #299EC3
+$sport: #84C14F
+$life: #5DCFF3
+$tech: #FCC44D
+$travel: #A99765
+$link: #3677B5
+$primary: #4D4382
+
+// Other
+$container-width: 940px
+$gap: 18px
+
+//Extend
+%center-child
+    display: flex
+    justify-content: center
+    align-items: center
+
+%main
+    margin: 16px auto
+    width: calc( 100% - 20px )
+    display: flex
+    flex-direction: column
+    gap: $gap
+
+    aside
+        display: flex
+        flex-direction: column
+        gap: $gap
+
+    .main, .content
+        display: flex
+        flex-direction: column
+        gap: $gap
+
+@media (min-width: 768px)
+    %main
+        .small-carousels
+            flex-direction: row
+
+            & > *
+            flex: 1 1 auto
+
+        aside
+            flex-direction: row
+
+@media (min-width: 960px)
+    %main
+        width: $container-width
+        .content
+            flex-direction: row
+
+        aside
+            flex-direction: column

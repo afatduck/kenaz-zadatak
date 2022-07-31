@@ -1,0 +1,74 @@
+h3
+  font-family: "Bitter", sans-serif
+  font-weight: 700
+  font-size: 24px
+  line-height: 28.8px
+  margin-top: 16px
+  margin: 0
+
+h4
+  font-size: 14px
+  line-height: 18px
+  font-weight: 700
+  font-family: "Bitter", serif
+  margin: 0
+
+.date-sm
+  font-size: 12px
+  line-height: 14.45px
+  color: $text-dim
+  margin: 0
+
+.vueperslides__parallax-wrapper::after, .vueperslides__parallax-wrapper::before
+  box-shadow: none !important
+
+.car-yellow
+  
+
+  .vueperslides__arrow--next
+    position: absolute
+    top: -43px
+    right: 0px !important
+    display: block
+
+    i
+      display: block
+      width: 13px
+      height: 19px
+      background-image: url('~@/assets/arrow-yellow-right.svg')
+
+.news-carousel
+  border-left-color: var(--color) !important
+
+  .vueperslides__arrow--next, .vueperslides__arrow--prev
+    position: absolute
+    top: -43px
+    display: block
+
+    i
+      display: block
+      width: 13px
+      height: 19px
+
+  .vueperslides__arrow--next
+    right: 0px !important
+    i
+      background-image: var(--arrow-right)
+
+  .vueperslides__arrow--prev
+    right: 33px !important
+    left: auto !important
+    i
+      background-image: var(--arrow-left)
+
+.vueperslides--fixed-height.vueperslides--bullets-outside
+  margin-bottom: 0 !important
+
+.vueperslides__bullets
+  gap: 10px !important
+  margin: 20px
+
+.vueperslides__arrow
+  opacity: 1 !important
+  &:hover
+    filter: brightness(0.9)
