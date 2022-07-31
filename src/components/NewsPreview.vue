@@ -9,7 +9,10 @@
         <span>{{ item.comments.length }} Comments</span>
       </div>
       <div class="content">
-        <img :src="`/headers/${item.headerImage}`" :alt="item.headline" />
+        <img
+          :src="require(`@/assets/headers/${item.headerImage}`)"
+          :alt="item.headline"
+        />
         <div>
           <p>{{ item.content[0].value }}</p>
           <router-link :to="`/news/${item.id}`">Read article</router-link>
