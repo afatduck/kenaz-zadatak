@@ -5,10 +5,10 @@
         <div class="logo">
           <img src="../assets/logo-small.svg" alt="Kenaz logo." />
         </div>
-        <router-link to="/" class="title">Kenaz</router-link>
-        <a href="/" class="link">Media</a>
-        <a href="/" class="link">Marketing</a>
-        <a href="/" class="link">Contact</a>
+        <router-link :to="{ name: 'home' }" class="title">Kenaz</router-link>
+        <router-link :to="{ name: 'home' }" class="link">Media</router-link>
+        <router-link :to="{ name: 'home' }" class="link">Marketing</router-link>
+        <router-link :to="{ name: 'home' }" class="link">Contact</router-link>
         <div class="search">
           <input type="text" placeholder="Search" />
           <img src="../assets/search-small.svg" alt="Seach icon" />
@@ -18,7 +18,7 @@
     <div class="row bot">
       <div>
         <template v-for="category in categories" :key="category">
-          <router-link :to="`/category/${category}`">
+          <router-link :to="{ name: 'category', params: { category } }">
             <div
               :class="[
                 'tab',
@@ -121,6 +121,10 @@ nav
   .active
     border-bottom-width: 0
     background-color: var(--category-color)
+    pointer-events: none
+
+    &::before
+      transition: none !important
 .tab
   @extend %center-child
   height: 53px
@@ -142,11 +146,13 @@ nav
     background-color: var(--category-color)
     margin-top: auto
     align-self: flex-end
-    transition: height .5s ease-in-out
+    transform: translateY(6px)
+    transition: all .5s ease-in-out
 
   &:hover
-    border-bottom-width: 0px
+    border-bottom-width: 0
 
   &:hover::before
     height: 100%
+    transform: translateY(0px)
 </style>

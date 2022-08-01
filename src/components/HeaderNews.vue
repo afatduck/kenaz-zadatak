@@ -4,6 +4,7 @@
       :duration="5000"
       :bullets="false"
       :slideRatio="425 / 940"
+      :dragging-distance="50"
       autoplay
     >
       <template #arrow-left>
@@ -29,7 +30,7 @@
                 </span>
               </p>
               <h2>{{ slide.headline }}</h2>
-              <router-link :to="`/news/${slide.id}`">
+              <router-link :to="{ name: 'news', params: { id: slide.id } }">
                 Read article
               </router-link>
             </div>

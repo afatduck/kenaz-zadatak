@@ -1,13 +1,19 @@
 <template>
   <div class="modal" ref="modal" @click="closeModal()">
     <img src="" alt="Modal Image" @click="(e) => e.stopPropagation()" />
+    <i />
   </div>
   <div class="gallery" ref="gallery">
     <div class="gradient"></div>
     <div class="open-wrapper">
       <img src="@/assets/search.svg" alt="Search icon." @click="openModal()" />
     </div>
-    <vueper-slides :duration="5000" :slideRatio="400 / 940" autoplay>
+    <vueper-slides
+      :duration="5000"
+      :slideRatio="400 / 940"
+      :dragging-distance="50"
+      autoplay
+    >
       <template #bullets="{ bulletIndexes, goToSlide, currentSlide }">
         <div
           v-for="(slideIndex, i) in bulletIndexes"
@@ -127,6 +133,17 @@ export default class Gallery extends Vue {
 
   img
     width: 90%
+
+  i
+    background-image: url("@/assets/x.svg")
+    background-size: contain
+    height: 32px
+    width: 32px
+    display: block
+    position: absolute
+    top: 32px
+    right: 32px
+    cursor: pointer
 
 .open
   opacity: 1

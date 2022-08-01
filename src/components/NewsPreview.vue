@@ -15,7 +15,9 @@
         />
         <div>
           <p>{{ item.content[0].value }}</p>
-          <router-link :to="`/news/${item.id}`">Read article</router-link>
+          <router-link :to="{ name: 'news', params: { id: item.id } }"
+            >Read article</router-link
+          >
         </div>
       </div>
     </article>
@@ -29,7 +31,7 @@ import { Prop } from "vue-property-decorator"
 @Options({})
 export default class NewsPreview extends Vue {
   @Prop() news!: News[]
-  @Prop() title = "News"
+  @Prop({ default: "News" }) title!: string
 }
 </script>
 

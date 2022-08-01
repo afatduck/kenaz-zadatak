@@ -1,6 +1,6 @@
 <template>
   <div class="social">
-    <h3>Soical</h3>
+    <h3>Social</h3>
     <div class="social-media-container">
       <a href="#" class="social-media">
         <img src="@/assets/facebook.svg" alt="Facebook logo" />
@@ -43,7 +43,7 @@ import Placeholder from "./Placeholder.vue"
     Placeholder,
   },
 })
-export default class Soical extends Vue {}
+export default class Social extends Vue {}
 </script>
 
 <style lang="sass" scoped>

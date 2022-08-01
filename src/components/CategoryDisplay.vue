@@ -1,8 +1,10 @@
 <template>
   <section :class="category">
     <div class="top">
-      <h3>{{ category.charAt(0).toUpperCase() + category.slice(1) }}</h3>
-      <router-link :to="`/category/${category}`"> See all </router-link>
+      <h3>{{ categoryCapitalized }}</h3>
+      <router-link :to="{ name: 'category', params: { category } }">
+        See all
+      </router-link>
     </div>
     <div
       class="grid"
@@ -12,19 +14,15 @@
       }"
     >
       <router-link
-        :to="`news/${item.id}`"
-        class="grid-item"
+        :to="{ name: 'news', params: { id: item.id } }"
+        :class="['grid-item', conentDirection]"
         v-for="(item, index) in news"
         :key="index"
-        :style="{
-          flexDirection: conentDirection,
-          gap: conentDirection === 'row' ? '16px' : '6px',
-        }"
       >
         <img
           :src="require(`@/assets/headers/${item.headerImage}`)"
           :alt="item.headline"
-          :style="{ maxWidth: conentDirection === 'row' ? '50%' : '100%' }"
+          :class="conentDirection"
         />
         <div class="text">
           <p class="date-sm">{{ item.date }}</p>
@@ -36,9 +34,16 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-class-component"
+import { Options, Vue } from "vue-class-component"
 import { Prop } from "vue-property-decorator"
 
+@Options({
+  computed: {
+    categoryCapitalized() {
+      return this.category.charAt(0).toUpperCase() + this.category.slice(1)
+    },
+  },
+})
 export default class CategoryDisplay extends Vue {
   @Prop() category!: Categories
   @Prop() grid!: [number, number]
@@ -91,4 +96,18 @@ img
   display: flex
   grid-column: span 1
   grid-row: span 1
+
+a.row
+  flex-direction: row
+  gap: 16px
+
+a.column
+  flex-direction: column
+  gap: 6px
+
+img.row
+  max-width: 50%
+
+img.column
+  max-width: 100%
 </style>

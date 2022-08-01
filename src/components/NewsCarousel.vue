@@ -7,6 +7,7 @@
         :visible-slides="visibleSlides"
         :bullets="false"
         :fixed-height="height"
+        :touchable="false"
       >
         <template #arrow-right>
           <i></i>
@@ -16,7 +17,10 @@
         </template>
         <vueper-slide v-for="(item, index) in news" :key="index">
           <template #content>
-            <router-link :to="`/news/${item.id}`" ref="items">
+            <router-link
+              :to="{ name: 'news', params: { id: item.id } }"
+              ref="items"
+            >
               <img
                 :src="require(`@/assets/headers/${item.headerImage}`)"
                 :alt="item.headline"

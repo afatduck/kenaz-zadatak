@@ -2,7 +2,7 @@
   <div>
     <h3>{{ title }}</h3>
     <template v-for="(item, index) in news" :key="index">
-      <router-link class="item" :to="`/news/${item.id}`">
+      <router-link class="item" :to="{ name: 'news', params: { id: item.id } }">
         <div>
           <div class="details">
             <p>{{ item.date }}</p>
@@ -33,7 +33,7 @@ export default class FooterNews extends Vue {
 <style lang="sass" scoped>
 .item
   display: flex
-  gap: 14px
+  gap: 24px
   justify-content: space-between
   width: 100%
   text-decoration: none
@@ -56,7 +56,7 @@ img
   object-fit: cover
 
 hr
-  height: 2px
+  height: 1px
   background-color: $text-dim
   margin: 20px 0
   border: none

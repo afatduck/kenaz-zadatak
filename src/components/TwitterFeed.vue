@@ -6,7 +6,7 @@
         <i />
         {{ item.name }}
       </h5>
-      <p :style="index === feed.length - 1 ? { margin: 0 } : undefined">
+      <p :class="{ m0: index === feed.length - 1 }">
         {{ item.content }}
       </p>
     </router-link>
@@ -50,11 +50,15 @@ h5
   font-size: 14px
   line-height: 16px
   color: $text-dim
-  margin: 0 0 10px 0
+  margin: 0 0 4px 0
 
 p
   color: #ccc
   font-size: 13px
   line-height: 18px
-  margin-bottom: 40px
+  margin-bottom: 36px
+  margin-top: 0
+
+m0
+  margin: 0
 </style>

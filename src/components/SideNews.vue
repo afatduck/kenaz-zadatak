@@ -1,5 +1,5 @@
 <template>
-  <div class="side-news">
+  <div class="side-news" :style="{ height }">
     <div class="menu">
       <button
         :class="currentTab === 'popular' && 'active'"
@@ -23,7 +23,7 @@
     <section ref="section">
       <router-link
         v-for="(item, index) in current"
-        :to="`/news/${item.id}`"
+        :to="{ name: 'news', params: { id: item.id } }"
         :key="index"
       >
         <div>
@@ -42,6 +42,7 @@
 </template>
 
 <script lang="ts">
+import { Maybe } from "@/utils"
 import { Options, Vue } from "vue-class-component"
 import { Prop, Ref } from "vue-property-decorator"
 
@@ -59,9 +60,29 @@ type Tabs = "popular" | "topRated" | "comments"
       }, 500)
       setTimeout(() => this.$refs.section.classList.remove("anim"), 1000)
     },
+    maybeSection(id: string): Maybe<number> {
+      return Maybe.of(id)
+        .map((id) => document.getElementById(id))
+        .map((el: HTMLElement) => el.offsetHeight)
+    },
+    setHeight(): void {
+      const maybeNews = this.maybeSection("news-section")
+      const maybeSports = this.maybeSection("sports-section")
+      const height = maybeNews.get() + maybeSports.get()
+      if (height && window.innerWidth >= 960) {
+        this.height = `${height + 18}px`
+      } else {
+        this.height = "fit-content"
+      }
+    },
   },
   mounted(): void {
     this.current = this[this.currentTab]
+    this.setHeight()
+    window.addEventListener("resize", this.setHeight)
+  },
+  beforeDestroy(): void {
+    window.removeEventListener("resize", this.setHeight)
   },
 })
 export default class SideNews extends Vue {
@@ -72,6 +93,7 @@ export default class SideNews extends Vue {
   currentTab: Tabs = "popular"
   current: News[] = []
   rerender = false
+  height = "fit-content"
 }
 </script>
 
@@ -109,7 +131,7 @@ $p-color: #ACB3BA
   align-items: center
   justify-content: space-around
   box-sizing: border-box
-  padding: 0 30px
+  padding: 0 28px
 
   button
     border: none

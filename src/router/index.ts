@@ -1,9 +1,4 @@
-import {
-  createRouter,
-  createWebHashHistory,
-  createWebHistory,
-  RouteRecordRaw,
-} from "vue-router"
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 
 const routes: Array<RouteRecordRaw> = [
@@ -21,6 +16,10 @@ const routes: Array<RouteRecordRaw> = [
     path: "/news/:id",
     name: "news",
     component: () => import("../views/NewsView.vue"),
+  },
+  {
+    path: "/:catchAll(.*)",
+    redirect: { name: "home" },
   },
 ]
 

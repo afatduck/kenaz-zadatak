@@ -1,15 +1,12 @@
 <template>
   <main v-if="news.length">
-    <Placeholder
-      :text="['banner', '940x120']"
-      :span="size === 'lg' ? 3 : 2"
-    ></Placeholder>
-    <HeaderNews :news="news.slice(0, 5)"></HeaderNews>
+    <Placeholder :text="['banner', '940x120']" />
+    <HeaderNews :news="news.slice(0, 5)" />
     <div class="content">
       <div class="main">
         <NewsPreview
           :news="news.slice(0 + (page - 1) * 6, 6 + (page - 1) * 6)"
-          :title="category"
+          :title="categoryCapitalized()"
         />
         <div class="pagination">
           <router-link
@@ -35,7 +32,7 @@
         <Social />
       </aside>
     </div>
-    <Placeholder :text="['banner', '620x120']" :span="2"></Placeholder>
+    <Placeholder :text="['banner', '620x120']" />
   </main>
   <Footer></Footer>
 </template>
@@ -60,27 +57,29 @@ import NewsPreview from "../components/NewsPreview.vue"
     NewsPreview,
   },
   methods: {
-    resizeHandler() {
-      if (window.innerWidth < 768) {
-        this.size = "sm"
-      } else if (window.innerWidth < 940) {
-        this.size = "md"
-      } else {
-        this.size = "lg"
-      }
+    categoryCapitalized() {
+      return this.category.charAt(0).toUpperCase() + this.category.slice(1)
     },
   },
   mounted() {
-    this.resizeHandler()
-    window.addEventListener("resize", this.resizeHandler)
     this.news = data.filter(
       (item) => item.category === this.$route.params.category
     )
+    if (!this.news.length) {
+      this.$router.push("/")
+      return
+    }
+    this.category = this.$route.params.category
     this.page = Number(this.$route.query.page) || 1
     this.$watch(
       () => this.$route.params.category,
       (category: string) => {
+        if (this.$route.name !== "category") return
         this.news = data.filter((item) => item.category === category)
+        if (!this.news.length) {
+          this.$router.push("/")
+          return
+        }
         this.category = category
       }
     )
@@ -91,14 +90,10 @@ import NewsPreview from "../components/NewsPreview.vue"
       }
     )
   },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.resizeHandler)
-  },
 })
 export default class HomeView extends Vue {
   news: News[] = []
-  size: "sm" | "md" | "lg" = "sm"
-  category = ""
+  category!: Categories
   page = 1
 }
 </script>

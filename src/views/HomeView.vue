@@ -1,10 +1,7 @@
 <template>
   <main>
-    <Placeholder
-      :text="['banner', '940x120']"
-      :span="size === 'lg' ? 3 : 2"
-    ></Placeholder>
-    <HeaderNews :news="news.slice(0, 5)"></HeaderNews>
+    <Placeholder :text="['banner', '940x120']" />
+    <HeaderNews :news="news.slice(0, 5)" />
     <div class="content">
       <div class="main">
         <CategoryDisplay
@@ -12,12 +9,14 @@
           :grid="[3, 1]"
           :news="news.filter((item) => item.category === 'news').slice(0, 3)"
           :conentDirection="'column'"
+          id="news-section"
         ></CategoryDisplay>
         <CategoryDisplay
           :category="'sport'"
           :grid="[3, 1]"
           :news="news.filter((item) => item.category === 'sport').slice(0, 3)"
           :conentDirection="'column'"
+          id="sports-section"
         ></CategoryDisplay>
         <Placeholder :text="['banner', '620x120']" :span="2"></Placeholder>
         <CategoryDisplay
@@ -63,19 +62,16 @@
         <Social />
       </aside>
     </div>
-    <Placeholder
-      :text="['banner', '940x120']"
-      :span="size === 'lg' ? 3 : 2"
-    ></Placeholder>
+    <Placeholder :text="['banner', '940x120']" />
     <Gallery
       :images="
         Array(7)
           .fill(undefined)
           .map((a, i) => require(`@/assets/gallery/${i + 1}.webp`))
       "
-    ></Gallery>
+    />
   </main>
-  <Footer></Footer>
+  <Footer />
 </template>
 
 <script lang="ts">

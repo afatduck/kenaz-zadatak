@@ -60,22 +60,27 @@
           <div class="top">
             <h4>{{ comment.user }}</h4>
             <p>{{ comment.time }}</p>
-            <button>Reply</button>
+            <button @click="reply(comment.user)">Reply</button>
           </div>
           <p>{{ comment.text }}</p>
         </div>
       </div>
-      <h2>Add Your Comment</h2>
+      <h2 ref="add">Add Your Comment</h2>
       <p>
         Molestias ultricies, ante quam urna ut volutpat, egestas dolor dui, nec
         hac ultrices nulla non netus. Placerat vehicula donec non suscipit
         egestas, augue vel suspendisse. Et felis venenatis blandit sed est
         ultrices, adipiscing urna.
       </p>
-      <form>
-        <input type="text" placeholder="Name" />
-        <input type="emial" placeholder="Email Address" />
-        <textarea placeholder="Comment"></textarea>
+      <form @submit="handleSubmit">
+        <input type="text" placeholder="Name" v-model="name" required />
+        <input
+          type="emial"
+          placeholder="Email Address"
+          v-model="email"
+          required
+        />
+        <textarea placeholder="Comment" v-model="comment" required />
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -90,6 +95,7 @@ import data from "@/data/data.json"
 import SideNews from "@/components/SideNews.vue"
 import Social from "@/components/Social.vue"
 import Footer from "@/components/Footer.vue"
+import { Ref } from "vue-property-decorator"
 
 @Options({
   components: {
@@ -98,15 +104,44 @@ import Footer from "@/components/Footer.vue"
     Social,
     Footer,
   },
+  methods: {
+    reply(to: string) {
+      this.comment = `@${to} ${this.comment}`
+      this.$refs.add.scrollIntoView()
+    },
+    handleSubmit(e: Event) {
+      e.preventDefault()
+      if (!this.name || !this.email || !this.comment) {
+        return
+      }
+      this.current.comments.push({
+        user: this.name,
+        text: this.comment,
+        time: new Date().toLocaleString(),
+      })
+      this.comment = ""
+    },
+  },
   mounted() {
     this.id = parseInt(this.$route.params.id)
-    this.current = data.filter((item) => item.id === this.id)[0]
+    const current = data.filter((item) => item.id === this.id)
+    if (!current.length) {
+      this.$router.push("/")
+      return
+    }
+    this.current = current[0]
     this.$watch(
       () => this.$route.params.id,
       (_id: string) => {
+        if (this.$route.name !== "news") return
         const id = parseInt(_id)
         this.id = id
-        this.current = data.filter((item) => item.id === id)[0]
+        const current = data.filter((item) => item.id === id)
+        if (!current.length) {
+          this.$router.push("/")
+          return
+        }
+        this.current = current[0]
       }
     )
   },
@@ -115,6 +150,10 @@ export default class NewsView extends Vue {
   news = data as News[]
   id = 0
   current!: News
+  name = ""
+  email = ""
+  comment = ""
+  @Ref("add") add!: HTMLHeadingElement
 }
 </script>
 
@@ -219,6 +258,7 @@ header
       height: 58px
 
     &>div
+      width: 100%
 
       .top
         display: flex
@@ -237,6 +277,7 @@ header
           font-size: 11px
           line-height: 20px
           color: $text-dim
+          margin: 0
 
         button
           background-color: transparent

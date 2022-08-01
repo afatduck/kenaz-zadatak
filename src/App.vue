@@ -15,9 +15,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass">
-@import './styles/css-vars.css'
-@import './styles/shared.sass'
-
 @font-face
   font-family: "Varela Round"
   src: url("assets/font/varela-round.woff2") format("woff2"), url("assets/font/varela-round.woff") format("woff")

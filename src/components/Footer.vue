@@ -5,13 +5,13 @@
         <img src="@/assets/logo-large-blue.svg" alt="Logo" />
         <h2>Kenaz</h2>
       </div>
-      <h3 :style="{ gridArea: 'subscribeH3' }">Newsletter</h3>
-      <h3 :style="{ gridArea: 'tagsH3' }">Tags Widget</h3>
-      <p class="dim details" :style="{ gridArea: 'details1' }">
+      <h3 class="subscribeH3">Newsletter</h3>
+      <h3 class="tagsH3">Tags Widget</h3>
+      <p class="dim details details1">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus leo
         ante.
       </p>
-      <p class="dim details" :style="{ gridArea: 'details2' }">
+      <p class="dim details details2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus leo
         ante.
       </p>
@@ -21,13 +21,13 @@
         <p class="tag">probo</p>
         <p class="tag">assuev</p>
         <p class="tag">probo</p>
-        <p class="tag">assueverit</p>
+        <p class="tag">assuevverit</p>
         <p class="tag">titl</p>
-        <p class="tag">assueverit</p>
-        <p class="tag">assueverit</p>
+        <p class="tag">assuevverit</p>
+        <p class="tag">assuevverit</p>
         <p class="tag">utroquoe</p>
         <p class="tag">probo</p>
-        <p class="tag">assueverit</p>
+        <p class="tag">assuevverit</p>
         <p class="tag">utroquoe</p>
       </div>
       <div class="socials">
@@ -98,6 +98,19 @@ export default class Footer extends Vue {
 </script>
 
 <style lang="sass" scoped>
+// Ares
+.subscribeH3
+  grid-area: "subscribeH3"
+
+.tagsH3
+  grid-area: "tagsH3"
+
+.details1
+  grid-area: "details1"
+
+.details2
+  grid-area: "details2"
+
 footer
   border-top: 20px solid $primary
   background-color: $background-dark
@@ -107,7 +120,7 @@ footer
   max-width: calc( 100% - 20px )
   margin: 0 auto
   display: grid
-  gap: 18px
+  gap: $gap
   grid-template-columns: 1fr
   grid-template-areas: "title" "details1" "subscribeH3" "details2" "subscribe" "tagsH3" "tags" "socials"
   &>*
@@ -139,21 +152,24 @@ h3
   font-weight: 400
   font-size: 14px
   line-height: 20px
+  margin: 0
 
 .tags
   display: flex
   flex-wrap: wrap
   gap: 4px
   grid-area: tags
+  height: fit-content
 
   .tag
     background-color: #333
-    padding: 4px 12px
-    font-size: 10px
+    box-sizing: border-box
+    padding: 4px 8px
+    font-size: 12px
     line-height: 20px
     color: $text-dim
     margin: 0
-
+    height: 28px
     &:hover
       background-color: $primary
       color: #ccc
@@ -167,6 +183,7 @@ h3
   img
     cursor: pointer
     width: 38px
+    height: 38px
 
 .subscribe
   height: 53px
@@ -183,6 +200,7 @@ h3
     padding-left: 20px
     font-size: 16px
     line-height: 19.26px
+    box-sizing: border-box
 
   button
     background-color: $primary
@@ -202,7 +220,7 @@ h3
 hr
   position: absolute
   left: 0
-  height: 3px
+  height: 2px
   background-color: #333
   width: 100%
   border: none
