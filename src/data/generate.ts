@@ -176,7 +176,8 @@ async function generateNews() {
       const user = await getRandomName()
       const text = (await getRandomText("short", 1))[0]
       const time = new Date().toLocaleString()
-      comments.push({ user, text, time })
+      const id = i
+      comments.push({ user, text, time, id, replies: [] })
     }
     news.push({
       id: i,

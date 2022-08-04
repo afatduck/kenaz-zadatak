@@ -23,6 +23,18 @@
           </template>
           <img class="fake" src="@/assets/socials.png" alt="Fake socials" />
         </div>
+        <Placeholder :text="['banner', '620x120']" :span="2"></Placeholder>
+        <div class="author" v-if="id">
+          <h2>About the Author</h2>
+          <div>
+            <img
+              :src="require(`@/assets/authors/${current.author.id}.webp`)"
+              :alt="current.author.name"
+            />
+            <p>{{ current.author.about }}</p>
+          </div>
+        </div>
+        <Comments :comments="current.comments" v-if="id" />
       </div>
       <aside>
         <SideNews
@@ -37,53 +49,6 @@
         <Social />
       </aside>
     </div>
-    <Placeholder :text="['banner', '620x120']" :span="2"></Placeholder>
-    <div class="author" v-if="id">
-      <h2>About the Author</h2>
-      <div>
-        <img
-          :src="require(`@/assets/authors/${current.author.id}.webp`)"
-          :alt="current.author.name"
-        />
-        <p>{{ current.author.about }}</p>
-      </div>
-    </div>
-    <div class="comments" v-if="id">
-      <h2>Comments</h2>
-      <div
-        class="comment"
-        v-for="(comment, index) in current.comments"
-        :key="index"
-      >
-        <img src="@/assets/user.png" :alt="comment.user" />
-        <div>
-          <div class="top">
-            <h4>{{ comment.user }}</h4>
-            <p>{{ comment.time }}</p>
-            <button @click="reply(comment.user)">Reply</button>
-          </div>
-          <p>{{ comment.text }}</p>
-        </div>
-      </div>
-      <h2 ref="add">Add Your Comment</h2>
-      <p>
-        Molestias ultricies, ante quam urna ut volutpat, egestas dolor dui, nec
-        hac ultrices nulla non netus. Placerat vehicula donec non suscipit
-        egestas, augue vel suspendisse. Et felis venenatis blandit sed est
-        ultrices, adipiscing urna.
-      </p>
-      <form @submit="handleSubmit">
-        <input type="text" placeholder="Name" v-model="name" required />
-        <input
-          type="emial"
-          placeholder="Email Address"
-          v-model="email"
-          required
-        />
-        <textarea placeholder="Comment" v-model="comment" required />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
   </main>
   <Footer></Footer>
 </template>
@@ -95,7 +60,7 @@ import data from "@/data/data.json"
 import SideNews from "@/components/SideNews.vue"
 import Social from "@/components/Social.vue"
 import Footer from "@/components/Footer.vue"
-import { Ref } from "vue-property-decorator"
+import Comments from "../components/Comments.vue"
 
 @Options({
   components: {
@@ -103,24 +68,7 @@ import { Ref } from "vue-property-decorator"
     SideNews,
     Social,
     Footer,
-  },
-  methods: {
-    reply(to: string) {
-      this.comment = `@${to} ${this.comment}`
-      this.$refs.add.scrollIntoView()
-    },
-    handleSubmit(e: Event) {
-      e.preventDefault()
-      if (!this.name || !this.email || !this.comment) {
-        return
-      }
-      this.current.comments.push({
-        user: this.name,
-        text: this.comment,
-        time: new Date().toLocaleString(),
-      })
-      this.comment = ""
-    },
+    Comments,
   },
   mounted() {
     this.id = parseInt(this.$route.params.id)
@@ -150,10 +98,6 @@ export default class NewsView extends Vue {
   news = data as News[]
   id = 0
   current!: News
-  name = ""
-  email = ""
-  comment = ""
-  @Ref("add") add!: HTMLHeadingElement
 }
 </script>
 
@@ -202,6 +146,7 @@ header
   grid-column: 1 / span 2
   background-color: #fff
   padding: 16px 0
+  overflow: hidden
 
   img
     max-width: 100%
@@ -237,99 +182,6 @@ header
     font-size: 13px
     line-height: 20px
     color: $other-text
-
-.comments
-  box-sizing: border-box
-  padding: 16px 32px 32px
-  grid-column: 1 / span 2
-  background-color: #fff
-
-  h2
-    margin: 0 0 32px
-
-  .comment
-    display: flex
-    gap: 16px
-    margin-bottom: 32px
-
-    img
-      object-fit: cover
-      width: 58px
-      height: 58px
-
-    &>div
-      width: 100%
-
-      .top
-        display: flex
-        align-items: center
-        gap: 16px
-
-        h4
-          margin: 0
-          font-family: "Bitter", serif
-          font-weight: 400
-          font-size: 18px
-          line-height: 20px
-          color: $primary
-
-        p
-          font-size: 11px
-          line-height: 20px
-          color: $text-dim
-          margin: 0
-
-        button
-          background-color: transparent
-          display: inline-block
-          margin-left: auto
-          color: $primary
-          outline: none
-          border: none
-          font-size: 14px
-          line-height: 16.86px
-
-          &:hover
-            cursor: pointer
-            text-decoration: underline
-  p
-    margin: 8px 0
-    font-size: 13px
-    line-height: 20px
-    color: $other-text
-
-  form
-    width: 100%
-    display: block
-
-    input
-      width: 50%
-
-    textarea
-      height: 186px
-      resize: none
-      width: 100%
-
-    input, textarea
-      background-color: #ddd
-      margin-top: 8px
-      padding: 12px 18px
-      border: none
-      outline: none
-      font-size: 14px
-      line-height: 16.86px
-      font-family: "Varela Round", sans-serif
-      display: block
-      box-sizing: border-box
-
-    button
-      background-color: $primary
-      border: none
-      padding: 16px 36px
-      color: white
-      font-size: 14px
-      line-height: 16.86px
-      margin-top: 32px
 
 @media (min-width: 768px)
   header div h1

@@ -4,6 +4,19 @@ interface Author {
   about: string
 }
 
+interface NewsComment {
+  id: number
+  user: string
+  text: string
+  time: string
+  replies: {
+    to: string
+    text: string
+    time: string
+    user: string
+  }[]
+}
+
 interface News {
   id: number
   headline: string
@@ -14,11 +27,7 @@ interface News {
   }[]
   date: string
   author: Author
-  comments: {
-    user: string
-    text: string
-    time: string
-  }[]
+  comments: NewsComment[]
   category: "news" | "business" | "sport" | "life" | "tech" | "travel"
 }
 
